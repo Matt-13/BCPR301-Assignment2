@@ -99,17 +99,13 @@ class Main(cmd.Cmd):
     def do_exit(self, line):
         """
         EXITS the program cleanly. (same as QUIT)
-        Usage: exit
+        Usage: quit, exit, q
         """
         exit()
 
-    # Quit method - Matt
-    def do_quit(self, line):
-        """
-        QUITS the program cleanly. (same as EXIT)
-        Usage: quit
-        """
-        self.do_exit(line)
+    # exit = do_exit()
+    # do_quit = exit
+    # do_q = exit
 
     # Save method - Liam
     def do_save(self, line):
