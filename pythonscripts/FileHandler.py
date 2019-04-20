@@ -103,7 +103,7 @@ class FileReader:
         is_plantuml = False
         try:
             if code.startswith("@startuml") and code.endswith("@enduml"):
-                return True
+                is_plantuml = True
         except IOError:
             fv.general_error()
             print("The file cannot be read.")
@@ -116,7 +116,7 @@ class FileReader:
         except Exception as e:
             fv.general_error()
             print("An Error Occurred" + str(e))
-        return False
+        return is_plantuml
 
     # Made by Liam
     # Check if the file contains the word "Class"
@@ -138,8 +138,8 @@ class FileReader:
     # Made by Liam Finds and splits up the classes then stores them in an array
     def find_classes(self):
         try:
-            isplantuml = self.check_if_plantuml(self.code)
-            if isplantuml:
+            is_plantuml = self.check_if_plantuml(self.code)
+            if is_plantuml:
                 fv.fr_file_accepted()
                 value = self.count_occurrences("class", self.code)
 
@@ -154,7 +154,6 @@ class FileReader:
         except Exception as e:
             fv.general_error()
             print("An Error Occurred" + str(e))
-        return
 
 
 # Made by Sarah
