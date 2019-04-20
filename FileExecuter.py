@@ -1,6 +1,7 @@
 # Ignore errors below this line.
 import sys
 import cmd
+import doctest
 from pythonscripts.FileController import FileController
 from pythonscripts.FileView import FileView
 
@@ -28,6 +29,9 @@ class Main(cmd.Cmd):
 
     # CMD - Matt
     def cmdloop(self, intro=None):
+        fc.test()
+        fv.test()
+        self.test()
         print(self.intro)
         while True:
             try:
@@ -144,6 +148,11 @@ class Main(cmd.Cmd):
         fc.print_file()
         fv.next_command()
 
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("./doctests/fileexecuter_doctest.txt", verbose=1)
+
 
 # Liam
 def print_to_screen():
@@ -158,12 +167,6 @@ def print_to_screen():
 
 
 m = Main()
-
-
-def test():
-    import doctest
-    doctest.testfile("./doctests/fileexecuter_doctest.txt", verbose=1)
-
 
 if __name__ == "__main__":
     # test()

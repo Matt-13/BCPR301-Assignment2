@@ -1,0 +1,21 @@
+"""
+
+>>> from pythonscripts.FileView import FileView
+>>> fv = FileView()
+>>> fv.print_help() # doctest: +ELLIPSIS
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+==================== Graph Interpreter Help File ====================
+<BLANKLINE>
+...
+>>> fv.general_error()
+<BLANKLINE>
+==========ERROR==========
+<BLANKLINE>
+>>> fv.fc_file_found()
+<BLANKLINE>
+File Found! Reading..
+<BLANKLINE>
+
+"""

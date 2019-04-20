@@ -15,6 +15,7 @@ db = DataBase()
 
 class FileController:
     def __init__(self):
+        fconv.test()
         self.command = ''
         self.data = 'empty'
         self.file_location = ''
@@ -109,6 +110,7 @@ class FileController:
             fv.general_error()
             print("An error has occurred")
             print(e)
+
     # Liam
     def save_file(self, file_name, code_id):
         self.data = db.get_code(code_id)

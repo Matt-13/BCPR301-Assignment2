@@ -1,0 +1,9 @@
+"""
+
+>>> from pythonscripts.FileHandler import FileConverter
+>>> from pythonscripts.FileHandler import FileReader
+>>> from pythonscripts.FileHandler import ClassBuilder
+>>> fconv = FileConverter()
+>>> fr = FileReader()
+
+"""

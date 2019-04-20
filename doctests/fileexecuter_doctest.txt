@@ -1,0 +1,13 @@
+"""
+
+>>> from FileExecuter import Main
+>>> m = Main()
+>>> m.emptyline() # doctest: +ELLIPSIS
+<BLANKLINE>
+...
+>>> m.do_absload("C:\graph.txt") # doctest: +ELLIPSIS
+<BLANKLINE>
+==========ERROR==========
+...
+
+"""
