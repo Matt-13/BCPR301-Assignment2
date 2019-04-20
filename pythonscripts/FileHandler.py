@@ -88,6 +88,10 @@ class FileConverter:
         self.my_relationship_content = \
             self.classes[len(self.classes) - 1]
 
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("../doctests/filehandler_doctest.txt", verbose=1)
 
 fc = FileConverter()
 
@@ -154,6 +158,11 @@ class FileReader:
         except Exception as e:
             fv.general_error()
             print("An Error Occurred" + str(e))
+
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("../doctests/filehandler_doctest.txt", verbose=1)
 
 
 # Made by Sarah
@@ -243,6 +252,11 @@ class ClassBuilder:
             out += str("{}".format(x))
             out += str("\n\n")
         return out
+
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("../doctests/filehandler_doctest.txt", verbose=1)
 
 
 """

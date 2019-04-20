@@ -173,3 +173,8 @@ class FileController:
     def output_error(message):
         fv.general_error()
         fv.output(message)
+
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("../doctests/filecontroller_doctest.txt", verbose=1)

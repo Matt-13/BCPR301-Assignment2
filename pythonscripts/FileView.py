@@ -182,3 +182,8 @@ class FileView:
               "'help' for all available commands.")
         print("To quit the program.. Type "
               "'exit' or 'quit'.")
+
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("../doctests/fileview_doctest.txt", verbose=1)

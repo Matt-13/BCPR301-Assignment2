@@ -160,7 +160,13 @@ def print_to_screen():
 m = Main()
 
 
+def test():
+    import doctest
+    doctest.testfile("./doctests/fileexecuter_doctest.txt", verbose=1)
+
+
 if __name__ == "__main__":
+    # test()
     # For Debugging Sys.Argv
     # print('Number of arguments:', len(sys.argv), 'arguments.')
     # print('Argument List:', str(sys.argv))
