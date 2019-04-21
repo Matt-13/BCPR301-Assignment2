@@ -176,8 +176,8 @@ class FileView:
     # FileExecuter CMD Methods
     @staticmethod
     def next_command():
-        print("............................."
-              "..................................")
+        print("-----------------------------"
+              "----------------------------------")
         print("Awaiting next command.. Type "
               "'help' for all available commands.")
         print("To quit the program.. Type "
@@ -186,4 +186,4 @@ class FileView:
     @staticmethod
     def test():
         import doctest
-        doctest.testfile("../doctests/fileview_doctest.txt")
+        doctest.testfile("../doctests/fileview_doctest.txt", verbose=1)

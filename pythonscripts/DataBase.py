@@ -2,6 +2,7 @@
 # Created by Liam Brydon
 import sqlite3
 
+
 class DataBase:
 
     def __init__(self, database='assignment.db'):
@@ -12,21 +13,18 @@ class DataBase:
         self.create_table()
 
     def connect(self):
-        try:
-            self.conn = sqlite3.connect(self.database)
-        except sqlite3.Error:
-            print("Error connecting to database!")
-
-        else:
-            print("Finishing connecting to database")
+        self.conn = sqlite3.connect(self.database)
+        print("Finishing connecting to database")
 
         self.cursor = self.conn.cursor()
 
+    """
     def close(self):
         if self.conn:
             self.conn.commit()
             self.cursor.close()
             self.conn.close()
+    """
 
     def create_table(self):
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS savedCode(
@@ -61,18 +59,10 @@ class DataBase:
         self.cursor.execute("""SELECT MAX(codeID)
          FROM savedCode""")
         max_id = self.cursor.fetchone()[0]
-        try:
-            if int(code_id) >= max_id or int(code_id) <= 0:
-                out = "ID doesnt exists in table"
-            else:
-                self.cursor.execute("SELECT code FROM "
-                               "savedCode WHERE codeID = (?)", (code_id,))
-                out = self.cursor.fetchone()[0]
-        except ValueError and TypeError as e:
-            print("Please enter an integer")
-            print(e)
-        except Exception as e:
-            print(e)
-            print(":)")
+        if int(code_id) >= max_id or int(code_id) <= 0:
+            out = "ID doesnt exists in table"
+        else:
+            self.cursor.execute("SELECT code FROM "
+                           "savedCode WHERE codeID = (?)", (code_id,))
+            out = self.cursor.fetchone()[0]
         return out
-

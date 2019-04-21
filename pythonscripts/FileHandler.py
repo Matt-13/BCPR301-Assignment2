@@ -64,10 +64,12 @@ class FileConverter:
                 as_class = relationship.split(" ")[0]
                 return tuple(("aggregation of", as_class))
 
+    """
     # Made by Sarah
     def print_program(self):
         for x in self.converted_classes:
             x.print_class()
+    """
 
     # Made by Liam
     # Modified by Matt to pass the PEP8 checks.
@@ -203,6 +205,7 @@ class ClassBuilder:
                 new_relationship = Relationship(a_relationship)
                 self.all_my_associated_classes.append(new_relationship)
 
+    """
     # Liam Brydon's modified code (originally created by Sarah Ball)
     # Used only for debug!
     def print_class(self):
@@ -215,6 +218,7 @@ class ClassBuilder:
         for x in self.all_my_methods:
             print(x)
         print("\n")
+    """
 
     # Made by Liam
     def return_class(self):
@@ -272,8 +276,10 @@ class Attribute:
             return f"    {self.name}: list"
         elif self._return == "Object":
             return f"    {self.name}: object"
+        """
         else:
             return f"    {self.name}: '{self._return}' "
+        """
 
 
 """
