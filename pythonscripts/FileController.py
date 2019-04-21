@@ -19,66 +19,94 @@ class FileController:
         self.command = ''
         self.data = 'empty'
         self.file_location = ''
+        self.loop_running = False
+
+    def user_choose(self):
+        self.loop_running = True
+        while self.loop_running:
+            userinput = input("Would you like to view the file in your default text editor? (Y/N) ")
+            if userinput.lower() == "y":
+                os.startfile("Output.txt")
+                break
+            elif userinput.lower() == "n":
+                break
+            else:
+                print("Please enter either Y or N.. {} was entered.".format(userinput))
+                pass
+        self.loop_running = False
 
     # Command Handler - Made by Matthew
     def handle_command(self, cmd, file_location):
         self.file_location = file_location
         self.command = cmd
         try:
-            if self.command == "":
-                fv.fc_defaults(file_location)
-                try:
-                    if os.path.isfile("../Graph.txt"):
-                        fv.fc_file_found()
-                        self.read_file("../Graph.txt")
-                    elif os.path.isfile("./Graph.txt"):
-                        fv.fc_file_found()
-                        self.read_file("./Graph.txt")
-                except FileNotFoundError:
-                    fv.general_error()
-                    fv.fc_file_not_found(file_location, "r")
-            elif self.command == "load":
-                if file_location.endswith(".txt"):
-                    try:
-                        if os.path.isfile("../{}".format(file_location)):
-                            fv.fc_file_found()
-                            self.read_file("../{}".format(file_location))
-                        elif os.path.isfile("./{}".format(file_location)):
-                            fv.fc_file_found()
-                            self.read_file("./{}".format(file_location))
-                    except FileNotFoundError:
-                        fv.general_error()
-                        fv.fc_file_not_found(file_location, "r", "load")
-                    except PermissionError:
-                        fv.general_error()
-                        fv.fc_permission_error()
-                elif file_location == "":
-                    fv.general_error()
-                    fv.fc_file_not_found(file_location, "", "load")
-                else:
-                    fv.general_error()
-                    fv.fc_syntax_error("load")
-            elif self.command == "absload":
-                if file_location.endswith(".txt"):
-                    try:
-                        if os.path.isfile("{}".format(file_location)):
-                            fv.fc_file_found()
-                            self.read_file("../{}".format(file_location))
-                        else:
-                            fv.general_error()
-                            fv.fc_load_file_error(file_location)
-                    except FileNotFoundError:
-                        fv.fc_file_not_found(file_location, "a", "absload")
-                    except PermissionError:
-                        fv.fc_permission_error()
-                elif file_location == "":
-                    fv.general_error()
-                    fv.fc_file_not_found(file_location, "", "absload")
-                else:
-                    fv.general_error()
-                    fv.fc_syntax_error("absload")
+            if cmd == "":
+                self.no_command(file_location)
+            elif cmd == "load":
+                self.load_command(file_location)
+            elif cmd == "absload":
+                self.absload_command(file_location)
         except FileNotFoundError:
             fv.fc_load_file_error(file_location)
+
+    @staticmethod
+    def is_file(filename):
+        if os.path.isfile("{}".format(filename)):
+            return True
+        else:
+            return False
+
+    def no_command(self, file_location):
+        fv.fc_defaults(file_location)
+        try:
+            if os.path.isfile("../Graph.txt"):
+                fv.fc_file_found()
+                self.read_file("../Graph.txt")
+            self.user_choose()
+        except FileNotFoundError:
+            fv.general_error()
+            fv.fc_file_not_found(file_location, "r", "")
+
+    def load_command(self, file_location):
+        if file_location.endswith(".txt"):
+            try:
+                if os.path.isfile("../{}".format(file_location)):
+                    fv.fc_file_found()
+                    self.read_file("../{}".format(file_location))
+                self.user_choose()
+            except FileNotFoundError:
+                fv.general_error()
+                fv.fc_file_not_found(file_location, "r", "load")
+            except PermissionError:
+                fv.general_error()
+                fv.fc_permission_error()
+        elif file_location == "":
+            fv.general_error()
+            fv.fc_file_not_found(file_location, "", "load")
+        else:
+            fv.general_error()
+            fv.fc_syntax_error("load")
+
+    def absload_command(self, file_location):
+        if file_location.endswith(".txt"):
+            try:
+                if self.is_file(file_location):
+                    fv.fc_file_found()
+                    self.read_file("../{}".format(file_location))
+                    self.user_choose()
+                else:
+                    fv.general_error()
+                    fv.fc_load_file_error(file_location)
+            except FileNotFoundError:
+                fv.fc_file_not_found(file_location, "a", "absload")
+            except PermissionError:
+                fv.fc_permission_error()
+        elif file_location == "":
+            fv.general_error()
+            fv.fc_file_not_found(file_location, "", "absload")
+        else:
+            fv.general_error()
+            fv.fc_syntax_error("absload")
 
     # Reads file - Liam
     def read_file(self, filename):

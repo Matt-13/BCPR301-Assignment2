@@ -28,32 +28,40 @@ class Main(cmd.Cmd):
             "To continue with a default graph.txt in the\n" \
             "root directory, press [Enter]\n" \
             "=============================================="
+        self.interrupt = "Ctrl + C pressed, but ignored. " \
+                         "Please use 'exit' or 'quit' " \
+                         "to stop the program."
+        self.verifycommand = "Please verify your command, and try again."
+        self.error = "An error has occurred."
 
-    # CMD - Matt
-    def cmdloop(self, intro=None):
+    # Extract tests into their own method to prevent duplication and long method.
+    def do_tests(self):
         fc.test()  # Test FileController and FileHandler
         fv.test()
         self.test()
+
+    # CMD - Matt
+    def cmdloop(self, intro=None):
+        # self.do_tests()  # first instance of duplication
         print(self.intro)
         while True:
             try:
                 super(Main, self).cmdloop(intro="")
                 break
             except KeyboardInterrupt:
-                print("Ctrl + C pressed, but ignored. "
-                      "Please use 'exit' or 'quit' "
-                      "to stop the program.")
+                print(self.interrupt)
             except TypeError and ValueError:
                 fv.general_error()
-                print("Please verify your command, and try again.")
+                print(self.verifycommand)
             except Exception:
                 fv.general_error()
-                print("An error has occurred.")
+                print(self.error)
 
     # Continues when no command is entered - Matt
     def emptyline(self):
         fv.fe_defaults()
         fc.handle_command('', '')
+        fv.next_command()
 
     # Load method - Matt
     def do_load(self, line):
@@ -65,18 +73,6 @@ class Main(cmd.Cmd):
         fc.handle_command("load", line)
         fv.next_command()
 
-        """
-        userinput = input("Would you like to view the file? (Y/N) ")
-        if userinput.lower() == "y":
-            # open the file
-            pass
-        elif userinput.lower() == "n":
-            pass
-        else:
-            # ask them again
-            pass
-        """
-
     # Absload method - Matt
     def do_absload(self, line):
         """
@@ -86,11 +82,11 @@ class Main(cmd.Cmd):
         """
         if "\\" in line:
             fc.handle_command("absload", line)
-            fv.next_command()
         else:
             fv.general_error()
             fv.fe_abs_path_error()
-            fv.next_command()
+        # Next instance of duplication removed.
+        fv.next_command()
 
     # View help file - Matt and Liam
     def do_allhelp(self, line):
@@ -109,6 +105,7 @@ class Main(cmd.Cmd):
         """
         exit()
 
+    # TODO: Add exit into quit, q, e, x, stop methods.
     # exit = do_exit()
     # do_quit = exit
     # do_q = exit
