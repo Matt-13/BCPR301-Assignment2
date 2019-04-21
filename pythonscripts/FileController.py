@@ -16,9 +16,7 @@ db = DataBase()
 class FileController:
     def __init__(self):
         fconv.test()
-        self.command = ''
         self.data = 'empty'
-        self.file_location = ''
         self.loop_running = False
 
     def user_choose(self):
@@ -37,8 +35,6 @@ class FileController:
 
     # Command Handler - Made by Matthew
     def handle_command(self, cmd, file_location):
-        self.file_location = file_location
-        self.command = cmd
         try:
             if cmd == "":
                 self.no_command(file_location)
