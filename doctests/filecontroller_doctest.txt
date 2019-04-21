@@ -8,6 +8,17 @@
 <BLANKLINE>
 No filename entered.
 Expected Syntax: load {filename.txt}
+>>> fc.handle_command("load", " ") # doctest: +ELLIPSIS
+<BLANKLINE>
+==========ERROR==========
+<BLANKLINE>
+Syntax Error
+Expected Syntax: load {filename.txt}
+>>> fc.handle_command("absload", ".\\Graph.txt") # doctest: +ELLIPSIS
+<BLANKLINE>
+File Found! Reading..
+<BLANKLINE>
+...
 >>> fc.handle_command("absload", "")
 <BLANKLINE>
 ==========ERROR==========
@@ -43,5 +54,17 @@ System failed to save to file
 System failed to save to file
 >>> fc.load_code(0)
 Code has loaded successfully
+>>> fc.view_help() # doctest: +ELLIPSIS
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+==================== Graph Interpreter Help File ====================
+...
+>>> fc.output_error("Error")
+<BLANKLINE>
+==========ERROR==========
+<BLANKLINE>
+Error
+>>> fc.quit()
 
 """

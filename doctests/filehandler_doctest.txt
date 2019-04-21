@@ -6,10 +6,6 @@
 >>> fconv = FileConverter()
 >>> fconv.convert_file()
 Converting file to python syntax..
->>> fconv.print_program()
-
->>> fconv.return_program()
-
 >>> fconv.read_file("Graph.txt") # doctest: +ELLIPSIS
 File Accepted.. Continuing..
 >>> file_data = fconv.read_file("Graph.txt") # doctest: +ELLIPSIS
@@ -23,5 +19,7 @@ True
 >>> fr.count_occurrences("Class", fr.code)
 Classes not found! Exiting..
 0
+>>> cb = ClassBuilder("Test", "Test : Str", "Test()", "")
+>>> cb.add_class_relationships()
 
 """

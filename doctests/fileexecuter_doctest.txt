@@ -9,5 +9,29 @@
 <BLANKLINE>
 ==========ERROR==========
 ...
+>>> m.do_absload("C:") # doctest: +ELLIPSIS
+<BLANKLINE>
+==========ERROR==========
+...
+>>> m.do_load("Graph.txt") # doctest: +ELLIPSIS
+<BLANKLINE>
+File Found! Reading..
+...
+>>> m.do_allhelp("") # doctest: +ELLIPSIS
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+==================== Graph Interpreter Help File ====================
+...
+>>> m.do_save("testgraphoutput.txt 1") # doctest: +ELLIPSIS
+---------------------------------------------------------------
+...
+>>> m.do_printcode("1") # doctest: +ELLIPSIS
+# File generated & created on: ...
+>>> m.do_loadcode("1") # doctest: +ELLIPSIS
+Code has loaded successfully
+...
+>>> m.do_printfile("") # doctest: +ELLIPSIS
+# File generated & created on: ...
 
 """
