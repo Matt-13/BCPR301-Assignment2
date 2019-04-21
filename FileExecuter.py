@@ -156,6 +156,7 @@ class Main(cmd.Cmd):
 
 
 # Liam
+"""
 def print_to_screen():
     their_answer = input("Would you like to print the "
                          "code to the screen? y/n: ")
@@ -165,9 +166,10 @@ def print_to_screen():
     their_answer = input("Would you like to save the code to Output.txt y/n: ")
     if their_answer == "y":
         fc.save_file("Output.txt")
-
+"""
 
 m = Main()
+
 
 if __name__ == "__main__":
     # test()
@@ -182,6 +184,7 @@ if __name__ == "__main__":
             # fv.fe_defaults()
             # fc.handle_command('', '')
             # print_to_screen()
+        """
         elif len(sys.argv) > 3:
             # Liam's save command
             if command == "save":
@@ -238,6 +241,7 @@ if __name__ == "__main__":
             else:
                 fv.general_error()
                 fv.output("Command not found!")
+        """
     # Ignores issues with Sys.argv
     except IndexError:
         pass
