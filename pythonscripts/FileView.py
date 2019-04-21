@@ -186,4 +186,4 @@ class FileView:
     @staticmethod
     def test():
         import doctest
-        doctest.testfile("../doctests/fileview_doctest.txt", verbose=1)
+        doctest.testfile("../doctests/fileview_doctest.txt")

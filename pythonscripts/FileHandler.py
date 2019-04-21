@@ -14,6 +14,7 @@ fv = FileView()
 class FileConverter:
     def __init__(self):
         self.classes = []
+        self.data = ""
         self.converted_classes = []
         self.my_relationship_content = ""
         self.codeToText = ""
@@ -82,8 +83,8 @@ class FileConverter:
     # Made by Matt & Liam
     def read_file(self, file):
         with open(file, "r") as filename:
-            data = filename.read()
-        rduml = FileReader(data)
+            self.data = filename.read()
+        rduml = FileReader(self.data)
         self.classes = rduml.find_classes()
         self.my_relationship_content = \
             self.classes[len(self.classes) - 1]

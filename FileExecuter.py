@@ -1,6 +1,7 @@
 # Ignore errors below this line.
 import sys
 import cmd
+import coverage
 import doctest
 from pythonscripts.FileController import FileController
 from pythonscripts.FileView import FileView
@@ -29,7 +30,7 @@ class Main(cmd.Cmd):
 
     # CMD - Matt
     def cmdloop(self, intro=None):
-        fc.test()
+        fc.test()  # Test FileController and FileHandler
         fv.test()
         self.test()
         print(self.intro)
@@ -151,7 +152,7 @@ class Main(cmd.Cmd):
     @staticmethod
     def test():
         import doctest
-        doctest.testfile("./doctests/fileexecuter_doctest.txt", verbose=1)
+        doctest.testfile("./doctests/fileexecuter_doctest.txt")
 
 
 # Liam

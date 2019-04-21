@@ -1,7 +1,7 @@
 """
 
 >>> from pythonscripts.FileController import FileController
->>> fc = FileController()
+>>> fc = FileController() # doctest: +ELLIPSIS
 >>> fc.handle_command("load", "")
 <BLANKLINE>
 ==========ERROR==========
