@@ -7,19 +7,19 @@ class FileView:
     # File Handler and FileController Methods
     def __init__(self):
         self.error_message = "\n==========ERROR==========\n"
+        self.equals = "===================="
 
     def general_error(self):
         print(self.error_message)
 
     # File Controller Methods
     # Made by Liam and Matt
-    @staticmethod
-    def print_help():
+    def print_help(self):
         # Matt's Code
         print("\n\n")
-        print("==================== "
-              "Graph Interpreter Help File "
-              "====================")
+        print(self.equals +
+              "Graph Interpreter Help File " +
+              self.equals)
         print("")
         print("NOTE: FileExecuter.py "
               "does not need a command to run")
@@ -76,6 +76,9 @@ class FileView:
                 print("No filename entered.\n"
                       "Expected Syntax: "
                       "absload {path_to_file\\filename.txt}")
+        elif directory == "lf":
+            print("File not found! '{}'"
+                  .format(os.path.abspath(file_location)))
 
     @staticmethod
     def fc_syntax_error(command):
@@ -93,10 +96,6 @@ class FileView:
               "Make sure you have the "
               "correct read permission on the file")
 
-    @staticmethod
-    def fc_load_file_error(file_location):
-        print("File not found! '{}'"
-              .format(os.path.abspath(file_location)))
     # File Handler Methods
     # File Converter Methods
 
@@ -157,27 +156,14 @@ class FileView:
         print("Path must be an absolute path.")
 
     # Other Methods
+    # Removed display graph code, display, and file error methods as they are all duplication
     @staticmethod
     def output(message):
         print(str(message))
 
-    @staticmethod
-    def display_graph_code(code):
-        print(code)
-
-    @staticmethod
-    def display(data):
-        print(data)
-
-    @staticmethod
-    def file_error():
-        print("")
-
     # FileExecuter CMD Methods
-    @staticmethod
-    def next_command():
-        print("-----------------------------"
-              "----------------------------------")
+    def next_command(self):
+        print(self.equals)
         print("Awaiting next command.. Type "
               "'help' for all available commands.")
         print("To quit the program.. Type "
