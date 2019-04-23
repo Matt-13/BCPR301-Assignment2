@@ -178,22 +178,25 @@ class SystemArgs:
 
     def check_if_commands_present(self):
         # If there is commands then:
-        if len(self.args) > 2:
+        if len(self.args) > 3:
             fv.general_error()
             fv.fe_too_many_args()
         elif len(self.args) >= 1:
             self.command = str(sys.argv[1]).lower()
-            # TODO: Sorta duplication, will fix later :)
-            if self.check_if_commandargs_present():
-                self.check_command()
-            else:
-                self.check_command()
+            self.check_command()
         # Otherwise, Start the CMD.cmdloop
         else:
             m.cmdloop()
 
     def check_if_commandargs_present(self):
         if len(self.args) == 2:
+            return True
+        else:
+            fv.output("Too many arguments entered.")
+            return False
+
+    def check_if_saveargs_present(self):
+        if len(self.args) == 3:
             return True
         else:
             return False
@@ -220,103 +223,55 @@ class SystemArgs:
         elif self.command == "printcode":
             self.do_printcode_command()
 
-    def do_absload_command(self):
-        pass
-    def do_load_command(self):
-        pass
-    def do_save_command(self):
-        pass
-
     @staticmethod
     def do_help_command():
         fc.view_help()
 
-    def do_loadcode_command(self):
+    def do_absload_command(self):
+        if self.check_if_commandargs_present():
+            if "\\" in str(sys.argv[2]):
+                fc.handle_command("absload", str(sys.argv[2]))
+            else:
+                fv.general_error()
+                fv.fe_abs_path_error()
+        else:
+            fv.general_error()
+            fv.fe_abs_syntax()
 
-    def do_printcode_command(self):
+    def do_load_command(self):
+        if self.check_if_commandargs_present():
+            fc.handle_command("load", str(sys.argv[2]))
+        else:
+            fv.general_error()
+            fv.fe_command_syntax("Load")
 
     def do_save_command(self):
+        if self.check_if_saveargs_present():
+            if len(self.args) == 2:
+                fv.general_error()
+                fv.fe_save_id()
+            else:
+                fc.save_file(sys.argv[2], sys.argv[3])
+        else:
+            fv.general_error()
+            fv.fe_command_syntax("Save")
 
+    def do_loadcode_command(self):
+        if self.check_if_commandargs_present():
+            fc.load_code(sys.argv[2])
+        else:
+            fv.general_error()
+            fv.fe_loadcode_syntax("loadcode")
+
+    def do_printcode_command(self):
+        if self.check_if_commandargs_present():
+            fc.print_code(sys.argv[2])
+        else:
+            fv.general_error()
+            fv.fe_loadcode_syntax("printcode")
 
 
 if __name__ == "__main__":
     a = SystemArgs()
     a.check_if_commands_present()
     # test()
-    # For Debugging Sys.Argv
-    # print('Number of arguments:', len(sys.argv), 'arguments.')
-    # print('Argument List:', str(sys.argv))
-    try:
-        if len(sys.argv) < 2:
-            pass
-            # fv.fe_defaults()
-            # fc.handle_command('', '')
-            # print_to_screen()
-        """
-        elif len(sys.argv) > 3:
-            # Liam's save command
-            if command == "save":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_command_syntax("Save")
-                else:
-                    fc.save_file(sys.argv[2], sys.argv[3])
-            else:
-                fv.fe_too_many_args()
-        else:
-            if command == "help":
-                
-
-            # Liam's save command
-            elif command == "save":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_command_syntax("Save")
-                else:
-                    fc.save_file(sys.argv[2], sys.argv[3])
-
-            # Liam's loadcode command
-            elif command == "loadcode":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_loadcode_syntax("loadcode")
-                else:
-                    fc.load_code(sys.argv[2])
-
-            # Liam's printcode command
-            elif command == "printcode":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_loadcode_syntax("printcode")
-                else:
-                    fc.print_code(sys.argv[2])
-
-            elif command == "load":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_command_syntax("Load")
-                else:
-                    fc.handle_command("load", str(sys.argv[2]))
-            elif command == "absload":
-                if len(sys.argv) == 2:
-                    fv.general_error()
-                    fv.fe_abs_syntax()
-                if "\\" in str(sys.argv[2]):
-                    fc.handle_command("absload", str(sys.argv[2]))
-                else:
-                    fv.general_error()
-                    fv.fe_abs_path_error()
-            else:
-                fv.general_error()
-                fv.output("Command not found!")
-        """
-    # Ignores issues with Sys.argv
-    except IndexError:
-        pass
-    # Checks for file permission errors.
-    except PermissionError:
-        print("Permission Error!\n"
-              "Check you have the permission to read the file!")
-    else:
-        pass
-        # m.cmdloop()

@@ -140,6 +140,12 @@ class FileView:
               .format(name, str(name).lower(), name))
 
     @staticmethod
+    def fe_save_id():
+        print("Save requires an ID from the database "
+              "to save with.\n"
+              "Syntax: Save [filename.txt] [ID]")
+
+    @staticmethod
     def fe_loadcode_syntax(text):
         print("{} requires the ID to know which code\n"
               "to load within the database.\n"

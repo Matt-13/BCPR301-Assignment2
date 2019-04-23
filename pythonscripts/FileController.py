@@ -61,7 +61,9 @@ class FileController:
             if self.is_file("Graph.txt"):
                 fv.fc_file_found()
                 self.read_file("./Graph.txt")
-            self.user_choose()
+                self.user_choose()
+            else:
+                fv.output("Graph.txt Not Found in root!")
         except FileNotFoundError:
             fv.general_error()
             fv.fc_file_not_found(file_location, "r", "")
@@ -73,7 +75,9 @@ class FileController:
                 if self.is_file(file_location):
                     fv.fc_file_found()
                     self.read_file("./{}".format(file_location))
-                self.user_choose()
+                    self.user_choose()
+                else:
+                    fv.output("File Not Found! '{}'".format(file_location))
             except FileNotFoundError:
                 fv.general_error()
                 fv.fc_file_not_found(file_location, "r", "load")
