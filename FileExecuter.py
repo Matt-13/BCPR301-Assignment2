@@ -169,16 +169,86 @@ def print_to_screen():
 m = Main()
 
 
+class SystemArgs:
+    def __init__(self):
+        self.command = ""
+        self.commandargs = ""
+        self.commands = ["absload", "load", "loadcode", "help", "save", "printcode"]
+        self.args = sys.argv[1:]
+
+    def check_if_commands_present(self):
+        # If there is commands then:
+        if len(self.args) > 2:
+            fv.general_error()
+            fv.fe_too_many_args()
+        elif len(self.args) >= 1:
+            self.command = str(sys.argv[1]).lower()
+            # TODO: Sorta duplication, will fix later :)
+            if self.check_if_commandargs_present():
+                self.check_command()
+            else:
+                self.check_command()
+        # Otherwise, Start the CMD.cmdloop
+        else:
+            m.cmdloop()
+
+    def check_if_commandargs_present(self):
+        if len(self.args) == 2:
+            return True
+        else:
+            return False
+
+    def check_command(self):
+        if self.command in self.commands:
+            fv.output("Command Found.. Parsing..")
+            self.command_to_function()
+        else:
+            fv.output("'" + self.command + "' Command not Found, "
+                                           "type 'FileExecuter.py help' for all available commands.")
+
+    def command_to_function(self):
+        if self.command == "help":
+            self.do_help_command()
+        elif self.command == "absload":
+            self.do_absload_command()
+        elif self.command == "load":
+            self.do_load_command()
+        elif self.command == "save":
+            self.do_save_command()
+        elif self.command == "loadcode":
+            self.do_loadcode_command()
+        elif self.command == "printcode":
+            self.do_printcode_command()
+
+    def do_absload_command(self):
+        pass
+    def do_load_command(self):
+        pass
+    def do_save_command(self):
+        pass
+
+    @staticmethod
+    def do_help_command():
+        fc.view_help()
+
+    def do_loadcode_command(self):
+
+    def do_printcode_command(self):
+
+    def do_save_command(self):
+
+
+
 if __name__ == "__main__":
+    a = SystemArgs()
+    a.check_if_commands_present()
     # test()
     # For Debugging Sys.Argv
     # print('Number of arguments:', len(sys.argv), 'arguments.')
     # print('Argument List:', str(sys.argv))
-    if len(sys.argv) >= 2:
-        command = str(sys.argv[1]).lower()
     try:
         if len(sys.argv) < 2:
-            m.cmdloop()
+            pass
             # fv.fe_defaults()
             # fc.handle_command('', '')
             # print_to_screen()
@@ -195,7 +265,7 @@ if __name__ == "__main__":
                 fv.fe_too_many_args()
         else:
             if command == "help":
-                fc.view_help()
+                
 
             # Liam's save command
             elif command == "save":
