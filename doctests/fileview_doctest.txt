@@ -6,8 +6,6 @@
 <BLANKLINE>
 <BLANKLINE>
 <BLANKLINE>
-==================== Graph Interpreter Help File ====================
-<BLANKLINE>
 ...
 >>> fv.general_error()
 <BLANKLINE>
@@ -29,7 +27,7 @@ Syntax Error...
 File Type Error...
 >>> fv.fc_permission_error() # doctest: +ELLIPSIS
 File permission error!...
->>> fv.fc_load_file_error("C:\\") # doctest: +ELLIPSIS
+>>> fv.fc_file_not_found("C:\\", "lf", "") # doctest: +ELLIPSIS
 File not found!...
 >>> fv.fc_plantuml_converting()
 Converting file to python syntax..
@@ -58,12 +56,10 @@ absload requires a file to load...
 Path must be an absolute path.
 >>> fv.output("Hello World")
 Hello World
->>> fv.display_graph_code("Code")
+>>> fv.output("Code")
 Code
->>> fv.display("Data")
+>>> fv.output("Data")
 Data
->>> fv.file_error()
-<BLANKLINE>
 >>> fv.next_command()
 ---------------------------------------------------------------
 Awaiting next command.. Type 'help' for all available commands.

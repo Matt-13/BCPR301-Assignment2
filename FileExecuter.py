@@ -16,6 +16,23 @@ fc = FileController()
 # 4/04/19 Code passes the PEP8 Check.
 # CMD based code - Matt
 
+class Tests:
+    # Extract tests into their own class to eliminate Long Class
+    # and keep the single responsibility principle.
+    def do_tests(self):
+        # TODO: REFACTOR these tests ;)
+        # fc.test()  # Test FileController and FileHandler
+        fv.test()
+        # self.test()
+
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("./doctests/fileexecuter_doctest.txt")
+
+
+t = Tests()
+
 
 class Main(cmd.Cmd):
     def __init__(self):
@@ -33,12 +50,6 @@ class Main(cmd.Cmd):
                          "to stop the program."
         self.verifycommand = "Please verify your command, and try again."
         self.error = "An error has occurred."
-
-    # Extract tests into their own method to prevent duplication and long method.
-    def do_tests(self):
-        fc.test()  # Test FileController and FileHandler
-        fv.test()
-        self.test()
 
     # CMD - Matt
     def cmdloop(self, intro=None):
@@ -100,15 +111,14 @@ class Main(cmd.Cmd):
     # Exit method - Matt
     def do_exit(self, line):
         """
-        EXITS the program cleanly. (same as QUIT)
-        Usage: quit, exit, q
+        STOPS and EXITS the program.
+        YOUR DATA WILL NOT BE SAVED.
+        Usage: quit, exit, q, stop
         """
         exit()
 
-    # TODO: Add exit into quit, q, e, x, stop methods.
-    # exit = do_exit()
-    # do_quit = exit
-    # do_q = exit
+    # Instances of duplication removed by assigning do_quit and do_q to do_exit
+    do_quit = do_q = do_stop = do_exit
 
     # Save method - Liam
     def do_save(self, line):
@@ -147,24 +157,6 @@ class Main(cmd.Cmd):
         fc.print_file()
         fv.next_command()
 
-    @staticmethod
-    def test():
-        import doctest
-        doctest.testfile("./doctests/fileexecuter_doctest.txt")
-
-
-# Liam
-"""
-def print_to_screen():
-    their_answer = input("Would you like to print the "
-                         "code to the screen? y/n: ")
-    if their_answer == "y":
-        fc.print_file()
-
-    their_answer = input("Would you like to save the code to Output.txt y/n: ")
-    if their_answer == "y":
-        fc.save_file("Output.txt")
-"""
 
 m = Main()
 
@@ -272,6 +264,6 @@ class SystemArgs:
 
 
 if __name__ == "__main__":
+    t.do_tests()
     a = SystemArgs()
     a.check_if_commands_present()
-    # test()

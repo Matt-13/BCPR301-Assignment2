@@ -8,6 +8,8 @@ class FileView:
     def __init__(self):
         self.error_message = "\n==========ERROR==========\n"
         self.equals = "===================="
+        self.minus = "-------------------------------" \
+                     "--------------------------------"
 
     def general_error(self):
         print(self.error_message)
@@ -169,7 +171,7 @@ class FileView:
 
     # FileExecuter CMD Methods
     def next_command(self):
-        print(self.equals)
+        print(self.minus)
         print("Awaiting next command.. Type "
               "'help' for all available commands.")
         print("To quit the program.. Type "
