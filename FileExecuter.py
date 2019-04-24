@@ -165,7 +165,11 @@ class SystemArgs:
     def __init__(self):
         self.command = ""
         self.commandargs = ""
-        self.commands = ["absload", "load", "loadcode", "help", "save", "printcode"]
+        # self.commands = ["absload", "load", "loadcode", "help", "save", "printcode"]
+        self.command_dictionary = {
+            1: "absload", 2: "load", 3: "loadcode",
+            4: "help", 5: "save", 6: "printcode"
+        }
         self.args = sys.argv[1:]
 
     def check_if_commands_present(self):
@@ -194,7 +198,7 @@ class SystemArgs:
             return False
 
     def check_command(self):
-        if self.command in self.commands:
+        if self.command in self.command_dictionary:
             fv.output("Command Found.. Parsing..")
             self.command_to_function()
         else:
@@ -202,6 +206,7 @@ class SystemArgs:
                                            "type 'FileExecuter.py help' for all available commands.")
 
     def command_to_function(self):
+        # Trying to use a dict to remove the if/elif/else here.
         if self.command == "help":
             self.do_help_command()
         elif self.command == "absload":
