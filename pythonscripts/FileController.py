@@ -27,14 +27,16 @@ class FileController:
     def user_choose(self):
         self.loop_running = True
         while self.loop_running:
-            userinput = input("Would you like to view the file in your default text editor? (Y/N) ")
+            userinput = input("Would you like to view the file"
+                              "in your default text editor? (Y/N) ")
             if userinput.lower() == "y":
                 os.startfile("Output.txt")
                 break
             elif userinput.lower() == "n":
                 break
             else:
-                print("Please enter either Y or N.. {} was entered.".format(userinput))
+                print("Please enter either Y or N.. "
+                      "{} was entered.".format(userinput))
                 pass
         self.loop_running = False
 

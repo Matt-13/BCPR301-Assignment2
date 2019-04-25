@@ -173,7 +173,8 @@ class FileView:
         print("Path must be an absolute path.")
 
     # Other Methods
-    # Removed display graph code, display, and file error methods as they are all duplication
+    # Removed display graph code, display
+    # and file error methods as they are all duplication
     @staticmethod
     def output(message):
         print(str(message))

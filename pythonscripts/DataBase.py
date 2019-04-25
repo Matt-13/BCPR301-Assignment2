@@ -42,10 +42,10 @@ class DataBase:
          savedCode""")
         max_id = self.cursor.fetchone()[0]
         self.cursor.execute("SELECT codeID FROM "
-                       "savedCode WHERE codeID = (?)", (max_id,))
+                            "savedCode WHERE codeID = (?)", (max_id,))
         identification = self.cursor.fetchone()[0]
         self.cursor.execute("SELECT timeStamp FROM "
-                       "savedCode WHERE codeID = (?)", (max_id,))
+                            "savedCode WHERE codeID = (?)", (max_id,))
         time_stamp = self.cursor.fetchone()[0]
 
         out += "Successfully Submitted to database: \n" + \
@@ -63,6 +63,6 @@ class DataBase:
             out = "ID doesnt exists in table"
         else:
             self.cursor.execute("SELECT code FROM "
-                           "savedCode WHERE codeID = (?)", (code_id,))
+                                "savedCode WHERE codeID = (?)", (code_id,))
             out = self.cursor.fetchone()[0]
         return out

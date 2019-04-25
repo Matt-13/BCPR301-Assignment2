@@ -204,7 +204,8 @@ class SystemArgs:
             self.command_to_function()
         else:
             fv.output("'" + self.command + "' Command not Found, "
-                                           "type 'FileExecuter.py help' for all available commands.")
+                                           "type 'FileExecuter.py help' "
+                                           "for all available commands.")
 
     def command_to_function(self):
         # Successful removal of a large block of if/else statements.
