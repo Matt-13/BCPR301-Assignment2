@@ -10,6 +10,12 @@ class FileView:
         self.equals = "===================="
         self.minus = "-------------------------------" \
                      "--------------------------------"
+        self.directories = {
+            "r": self.file_not_found,
+            "a": self.file_not_found,
+            "lf": self.file_not_found_abs,
+            "": self.no_filename_entered
+        }
 
     def general_error(self):
         print(self.error_message)
@@ -60,27 +66,30 @@ class FileView:
     def fc_file_found():
         print("\nFile Found! Reading..\n")
 
+    # Shortened to 1 line with a dict.
+    def fc_file_not_found(self, file_location, directory, command):
+        self.directories[directory](file_location, command)
+
     @staticmethod
-    def fc_file_not_found(file_location, directory, command):
-        if directory == "r":
-            print("File not found! There must be a "
-                  "{}.txt in the root directory!"
-                  .format(file_location))
-        elif directory == "a":
-            print("File not found! There must be a "
-                  "{}.txt in the chosen directory!"
-                  .format(file_location))
-        elif directory == "":
-            if command == "load":
-                print("No filename entered.\n"
-                      "Expected Syntax: load {filename.txt}")
-            elif command == "absload":
-                print("No filename entered.\n"
-                      "Expected Syntax: "
-                      "absload {path_to_file\\filename.txt}")
-        elif directory == "lf":
-            print("File not found! '{}'"
-                  .format(os.path.abspath(file_location)))
+    def file_not_found(file_location, command):
+        print("File not found! There must be a "
+              "{}.txt in the chosen directory!"
+              .format(file_location))
+
+    @staticmethod
+    def no_filename_entered(file_location, command):
+        if command == "load":
+            print("No filename entered.\n"
+                  "Expected Syntax: load {filename.txt}")
+        elif command == "absload":
+            print("No filename entered.\n"
+                  "Expected Syntax: "
+                  "absload {path_to_file\\filename.txt}")
+
+    @staticmethod
+    def file_not_found_abs(file_location, command):
+        print("File not found! '{}'"
+              .format(os.path.abspath(file_location)))
 
     @staticmethod
     def fc_syntax_error(command):
