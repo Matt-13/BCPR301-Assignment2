@@ -165,10 +165,11 @@ class SystemArgs:
     def __init__(self):
         self.command = ""
         self.commandargs = ""
-        # self.commands = ["absload", "load", "loadcode", "help", "save", "printcode"]
         self.command_dictionary = {
-            1: "absload", 2: "load", 3: "loadcode",
-            4: "help", 5: "save", 6: "printcode"
+            "absload": self.do_absload_command, "load": self.do_load_command,
+            "loadcode": self.do_load_command, "help": self.do_help_command,
+            "save": self.do_save_command,
+            "printcode": self.do_printcode_command
         }
         self.args = sys.argv[1:]
 
@@ -206,19 +207,8 @@ class SystemArgs:
                                            "type 'FileExecuter.py help' for all available commands.")
 
     def command_to_function(self):
-        # Trying to use a dict to remove the if/elif/else here.
-        if self.command == "help":
-            self.do_help_command()
-        elif self.command == "absload":
-            self.do_absload_command()
-        elif self.command == "load":
-            self.do_load_command()
-        elif self.command == "save":
-            self.do_save_command()
-        elif self.command == "loadcode":
-            self.do_loadcode_command()
-        elif self.command == "printcode":
-            self.do_printcode_command()
+        # Successful removal of a large block of if/else statements.
+        self.command_dictionary[self.command]()
 
     @staticmethod
     def do_help_command():

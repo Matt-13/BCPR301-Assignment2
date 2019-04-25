@@ -18,6 +18,11 @@ class FileController:
         fconv.test()
         self.data = 'empty'
         self.loop_running = False
+        self.commands = {
+            "": self.no_command,
+            "load": self.load_command,
+            "absload": self.absload_command
+        }
 
     def user_choose(self):
         self.loop_running = True
@@ -34,14 +39,10 @@ class FileController:
         self.loop_running = False
 
     # Command Handler - Made by Matthew
+    # Refactored with a dictionary.
     def handle_command(self, cmd, file_location):
         try:
-            if cmd == "":
-                self.no_command(file_location)
-            elif cmd == "load":
-                self.load_command(file_location)
-            elif cmd == "absload":
-                self.absload_command(file_location)
+            self.commands[cmd](file_location)
         except FileNotFoundError:
             fv.fc_file_not_found(file_location, "lf", "")
 
