@@ -18,7 +18,7 @@ class FileController:
         fconv.test()
         self.data = 'empty'
         self.loop_running = False
-        self.commands = {
+        self.get_commands = {
             "": self.no_command,
             "load": self.load_command,
             "absload": self.absload_command
@@ -42,7 +42,7 @@ class FileController:
     # Refactored with a dictionary.
     def handle_command(self, cmd, file_location):
         try:
-            self.commands[cmd](file_location)
+            self.get_commands[cmd](file_location)
         except FileNotFoundError:
             fv.fc_file_not_found(file_location, "lf", "")
 
