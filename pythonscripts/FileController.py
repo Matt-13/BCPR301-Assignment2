@@ -132,31 +132,16 @@ class FileController:
             print("An error has occurred")
             print(e)
 
-    # This method can be removed.
-    # Liam
-    def print_file(self):
-        try:
-            fv.output(self.data)
-        except IOError:
-            print("System failed to load to file")
-        except Exception as e:
-            fv.general_error()
-            print("An error has occurred")
-            print(e)
-
     # Liam
     def save_file(self, file_name, code_id):
         self.data = db.get_code(code_id)
         try:
             fw.write_file(db.get_code(code_id), file_name)
-        except AttributeError as e:
-            print(e)
         except IOError as e:
             print("System failed to save to file" + e)
         except Exception as e:
             fv.general_error()
-            print("An error has occurred")
-            print(e)
+            print("An error has occurred" + str(e))
 
     # Liam
     def load_code(self, code_id):
@@ -166,18 +151,12 @@ class FileController:
                 self.data = code
                 fv.output("Code has loaded successfully")
             else:
-                fv.output("ERROR: code failed to load:")
-                fv.output('\t' + code)
-        except AttributeError as e:
-            print(e)
+                fv.output("ERROR: code failed to load:" + '\t' + code)
         except IOError:
             print("System failed to save to file")
-        except ValueError and TypeError:
-            fv.output("Please enter an integer")
         except Exception as e:
             fv.general_error()
-            print("An error has occurred")
-            print(e)
+            print("An error has occurred" + str(e))
 
     # Liam
     def print_code(self, code_id):
@@ -191,8 +170,7 @@ class FileController:
         except ValueError and TypeError:
             fv.output("Please enter an integer")
         except IOError as e:
-            print("System failed to load to file")
-            print(e)
+            print("System failed to load to file" + e)
 
     # Matthew - Possible Middle Man Smell..
     @staticmethod
