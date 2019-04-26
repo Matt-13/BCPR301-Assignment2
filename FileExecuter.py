@@ -180,7 +180,7 @@ class SystemArgs:
             fv.fe_too_many_args()
         elif len(self.args) >= 1:
             self.command = str(sys.argv[1]).lower()
-            self.check_command()
+            self.check_command = self.check_command()
         # Otherwise, Start the CMD.cmdloop
         else:
             m.cmdloop()

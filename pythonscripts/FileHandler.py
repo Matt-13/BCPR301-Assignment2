@@ -205,21 +205,6 @@ class ClassBuilder:
                 new_relationship = Relationship(a_relationship)
                 self.all_my_associated_classes.append(new_relationship)
 
-    """
-    # Liam Brydon's modified code (originally created by Sarah Ball)
-    # Used only for debug!
-    def print_class(self):
-        print("class", self.name, ":", end="\n\n")
-        for x in self.all_my_attributes:
-            print(x)
-        print("")
-        print("\tdef __init__(self):")
-        print("\t\tpass")
-        for x in self.all_my_methods:
-            print(x)
-        print("\n")
-    """
-
     # Made by Liam
     def return_class(self):
         out = ""

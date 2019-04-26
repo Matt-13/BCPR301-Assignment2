@@ -182,10 +182,10 @@
 <p id="t42" class="pln"><span class="str">         savedCode"""</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t43" class="stm mis">        <span class="nam">max_id</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">fetchone</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t44" class="stm mis">        <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">execute</span><span class="op">(</span><span class="str">"SELECT codeID FROM "</span><span class="strut">&nbsp;</span></p>
-<p id="t45" class="pln">                       <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">max_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t45" class="pln">                            <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">max_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t46" class="stm mis">        <span class="nam">identification</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">fetchone</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t47" class="stm mis">        <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">execute</span><span class="op">(</span><span class="str">"SELECT timeStamp FROM "</span><span class="strut">&nbsp;</span></p>
-<p id="t48" class="pln">                       <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">max_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t48" class="pln">                            <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">max_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t49" class="stm mis">        <span class="nam">time_stamp</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">fetchone</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t50" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t51" class="stm mis">        <span class="nam">out</span> <span class="op">+=</span> <span class="str">"Successfully Submitted to database: \n"</span> <span class="op">+</span> <span class="xx">\</span><span class="strut">&nbsp;</span></p>
@@ -203,7 +203,7 @@
 <p id="t63" class="stm mis">            <span class="nam">out</span> <span class="op">=</span> <span class="str">"ID doesnt exists in table"</span><span class="strut">&nbsp;</span></p>
 <p id="t64" class="pln">        <span class="key">else</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t65" class="stm mis">            <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">execute</span><span class="op">(</span><span class="str">"SELECT code FROM "</span><span class="strut">&nbsp;</span></p>
-<p id="t66" class="pln">                           <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">code_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t66" class="pln">                                <span class="str">"savedCode WHERE codeID = (?)"</span><span class="op">,</span> <span class="op">(</span><span class="nam">code_id</span><span class="op">,</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t67" class="stm mis">            <span class="nam">out</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cursor</span><span class="op">.</span><span class="nam">fetchone</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t68" class="stm mis">        <span class="key">return</span> <span class="nam">out</span><span class="strut">&nbsp;</span></p>
 
@@ -216,7 +216,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.3</a>,
-            created at 2019-04-25 14:19
+            created at 2019-04-26 18:47
         </p>
     </div>
 </div>
