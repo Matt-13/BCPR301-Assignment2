@@ -28,6 +28,9 @@ class FileConverter:
     def convert_file(self):
         fv.fc_plantuml_converting()
         for self.class_info in self.classes:
+            self.attributes = []
+            self.methods = []
+            self.relationships = []
             self.class_name = self.class_info.split(' ')[1]
             self.convert_attributes()
             self.convert_methods()
