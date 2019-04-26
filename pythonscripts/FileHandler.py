@@ -147,14 +147,12 @@ class FileReader:
             print("An Error Occurred" + str(e))
         return count
 
-    # Made by Liam Finds and splits up the classes then stores them in an array
     def find_classes(self):
         try:
             is_plantuml = self.check_if_plantuml(self.code)
             if is_plantuml:
                 fv.fr_file_accepted()
                 value = self.count_occurrences("class", self.code)
-
                 for i in range(0, value):
                     self.allMyClasses.append(self.code.split("}\nclass")[i])
                 return self.allMyClasses
