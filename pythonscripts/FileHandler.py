@@ -13,31 +13,42 @@ fv = FileView()
 
 class FileConverter:
     def __init__(self):
+        self.class_info = ""
         self.classes = []
         self.data = ""
         self.converted_classes = []
         self.my_relationship_content = ""
         self.codeToText = ""
+        self.class_name = ""
+        self.attributes = []
+        self.methods = []
+        self.relationships = []
 
     # Made by Sarah - Modified by Matt
     def convert_file(self):
         fv.fc_plantuml_converting()
-        for class_info in self.classes:
-            class_name = class_info.split(' ')[1]
-            attributes = []
-            methods = []
-            relationships = []
-            for line in class_info.split("\n"):
-                if line.find(":") != -1:
-                    attributes.append(line)
-            for line in class_info.split("\n"):
-                if line.find("()") != -1:
-                    methods.append(line)
-            for relationship in self.my_relationship_content.split("\n"):
-                if self.find_relationship(relationship, class_name):
-                    relationships.append(
-                        self.find_relationship(relationship, class_name))
-            self.add_class(class_name, attributes, methods, relationships)
+        for self.class_info in self.classes:
+            self.class_name = self.class_info.split(' ')[1]
+            self.convert_attributes()
+            self.convert_methods()
+            self.convert_relationships()
+            self.add_class(self.class_name, self.attributes, self.methods, self.relationships)
+
+    def convert_attributes(self):
+        for line in self.class_info.split("\n"):
+            if line.find(":") != -1:
+                self.attributes.append(line)
+
+    def convert_methods(self):
+        for line in self.class_info.split("\n"):
+            if line.find("()") != -1:
+                self.methods.append(line)
+
+    def convert_relationships(self):
+        for relationship in self.my_relationship_content.split("\n"):
+            if self.find_relationship(relationship, self.class_name):
+                self.relationships.append(
+                    self.find_relationship(relationship, self.class_name))
 
     # Made by Sarah
     def add_class(self, class_name, attributes, methods, relationships):
@@ -64,15 +75,6 @@ class FileConverter:
                 as_class = relationship.split(" ")[0]
                 return tuple(("aggregation of", as_class))
 
-    """
-    # Made by Sarah
-    def print_program(self):
-        for x in self.converted_classes:
-            x.print_class()
-    """
-
-    # Made by Liam
-    # Modified by Matt to pass the PEP8 checks.
     def return_program(self):
         out = "# File generated & created on: " + str(datetime.datetime.now())
         out += "\n# File passes the PEP8 check."
@@ -82,12 +84,11 @@ class FileConverter:
         # out += ""
         self.codeToText += out
 
-    # Made by Matt & Liam
     def read_file(self, file):
         with open(file, "r") as filename:
             self.data = filename.read()
-        rduml = FileReader(self.data)
-        self.classes = rduml.find_classes()
+        read_uml = FileReader(self.data)
+        self.classes = read_uml.find_classes()
         self.my_relationship_content = \
             self.classes[len(self.classes) - 1]
 
