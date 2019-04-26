@@ -40,8 +40,6 @@ class FileController:
                 pass
         self.loop_running = False
 
-    # Command Handler - Made by Matthew
-    # Refactored with a dictionary.
     def handle_command(self, cmd, file_location):
         try:
             self.get_commands[cmd](file_location)
@@ -57,7 +55,6 @@ class FileController:
         else:
             return False
 
-    # Good removal of duplication.
     def no_command(self, file_location):
         fv.fc_defaults(file_location)
         try:
@@ -122,15 +119,17 @@ class FileController:
             fconv.read_file(filename)
             fconv.convert_file()
             fconv.return_program()
-            self.data = fconv.codeToText
-            fw.write_file(self.data, "Output.txt")
-            db.data_entry(self.data)
+            self.write_file()
         except IOError:
             print("System failed to save to file")
         except Exception as e:
             fv.general_error()
-            print("An error has occurred")
-            print(e)
+            print("An error has occurred" + str(e))
+
+    def write_file(self):
+        self.data = fconv.codeToText
+        fw.write_file(self.data, "Output.txt")
+        db.data_entry(self.data)
 
     # Liam
     def save_file(self, file_name, code_id):
