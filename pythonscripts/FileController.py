@@ -68,7 +68,6 @@ class FileController:
             fv.general_error()
             fv.fc_file_not_found(file_location, "r", "")
 
-    # Will look at refactoring when I start with Long Methods.
     def load_command(self, file_location):
         if file_location.endswith(".txt"):
             try:
@@ -84,12 +83,8 @@ class FileController:
             except PermissionError:
                 fv.general_error()
                 fv.fc_permission_error()
-        elif file_location == "":
-            fv.general_error()
-            fv.fc_file_not_found(file_location, "", "load")
         else:
-            fv.general_error()
-            fv.fc_syntax_error("load")
+            self.command_error(file_location, "load")
 
     # Will look at refactoring when I start with Long Methods.
     def absload_command(self, file_location):
@@ -106,14 +101,18 @@ class FileController:
                 fv.fc_file_not_found(file_location, "a", "absload")
             except PermissionError:
                 fv.fc_permission_error()
-        elif file_location == "":
+        else:
+            self.command_error(file_location, "absload")
+
+    @staticmethod
+    def command_error(file_location, cmd):
+        if file_location == "":
             fv.general_error()
-            fv.fc_file_not_found(file_location, "", "absload")
+            fv.fc_file_not_found(file_location, "", cmd)
         else:
             fv.general_error()
             fv.fc_syntax_error("absload")
 
-    # Reads file - Liam
     def read_file(self, filename):
         try:
             fconv.read_file(filename)
