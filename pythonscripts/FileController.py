@@ -106,11 +106,10 @@ class FileController:
 
     @staticmethod
     def command_error(file_location, cmd):
+        fv.general_error()
         if file_location == "":
-            fv.general_error()
             fv.fc_file_not_found(file_location, "", cmd)
         else:
-            fv.general_error()
             fv.fc_syntax_error("absload")
 
     def read_file(self, filename):
