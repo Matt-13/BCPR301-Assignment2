@@ -176,12 +176,6 @@ class FileController:
     def view_help():
         fv.print_help()
 
-    # Matthew
-    @staticmethod
-    def output_error(message):
-        fv.general_error()
-        fv.output(message)
-
     @staticmethod
     def test():
         import doctest
