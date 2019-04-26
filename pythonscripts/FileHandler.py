@@ -207,22 +207,27 @@ class ClassBuilder:
 
     # Made by Liam
     def return_class(self):
-        out = ""
-        out += str("\nclass {}:\n\n").format(self.name)
+        out = "" + str("\nclass {}:\n\n").format(self.name)
+        out += self.return_class_attributes()
+        out += self.return_class_relationships()
+        out += self.return_class_methods()
+        return out
 
+    def return_class_attributes(self):
+        out = ""
         length = len(self.all_my_attributes)
         count = 0
         for x in self.all_my_attributes:
             if count == length - 1:
-                out += str("{}".format(x))
-                out += str("\n\n")
+                out += str("{}".format(x)) + str("\n\n")
                 count += 1
             elif count < length:
-                out += str("{}".format(x))
-                out += str("\n")
+                out += str("{}".format(x)) + str("\n")
                 count += 1
+        return out
 
-        # Don't worry, I figured this out :P - Easy carry made by matt
+    def return_class_relationships(self):
+        out = ""
         out += str("    " + "def __init__(self):\n")
         for a_class in self.relationships:
             out += str(
@@ -231,14 +236,15 @@ class ClassBuilder:
                 f" = {a_class[1]}()  "
                 f"# {a_class[0]}\n"
             )
-        out += "\n"
-        out += str("        " + "pass\n\n")
+        out += "\n" + str("        " + "pass\n\n")
+        return out
 
+    def return_class_methods(self):
+        out = ""
         for x in self.all_my_methods:
             out += str("{}".format(x))
             out += str("\n\n")
         return out
-
 
 """
 Sarah Ball's code - Modified by Liam + Matt
