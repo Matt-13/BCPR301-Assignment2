@@ -227,11 +227,8 @@ class SystemArgs:
 
     def do_save_command(self):
         if self.check_if_saveargs_present():
-            if len(self.args) == 2:
-                fv.general_error()
-                fv.fe_save_id()
-            else:
-                fc.save_file(sys.argv[2], sys.argv[3])
+            # Old if statement doesn't even get reached.
+            fc.save_file(sys.argv[2], sys.argv[3])
         else:
             fv.general_error()
             fv.fe_command_syntax("Save")

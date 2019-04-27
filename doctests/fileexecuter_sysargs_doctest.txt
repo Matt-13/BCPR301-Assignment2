@@ -66,5 +66,25 @@ True
 >>> s.do_load_command() # doctest: +ELLIPSIS
 <BLANKLINE>
 File Found!...
+>>> sys.argv = ["FileExecuter.py", "loadcode"]
+>>> s = SystemArgs()
+>>> s.do_loadcode_command() # doctest: +ELLIPSIS
+Too many arguments entered.
+<BLANKLINE>
+===...
+>>> sys.argv = ["FileExecuter.py", "loadcode", 1]
+>>> s = SystemArgs()
+>>> s.do_loadcode_command() # doctest: +ELLIPSIS
+Code has loaded successfully
+>>> sys.argv = ["FileExecuter.py", "printcode"]
+>>> s = SystemArgs()
+>>> s.do_printcode_command() # doctest: +ELLIPSIS
+Too many arguments entered.
+<BLANKLINE>
+===...
+>>> sys.argv = ["FileExecuter.py", "printcode", 1]
+>>> s = SystemArgs()
+>>> s.do_printcode_command() # doctest: +ELLIPSIS
+# File generated & created on:...
 
 """
