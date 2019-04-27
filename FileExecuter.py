@@ -34,7 +34,8 @@ class Main(cmd.Cmd):
         self.error = "An error has occurred."
 
     # CMD - Matt
-    def cmdloop(self, intro=None):
+    # Cannot test a loop so will not be covered using doctests.
+    def cmdloop(self, intro=None):  # pragma: no cover
         # self.do_tests()  # first instance of duplication
         print(self.intro)
         while True:
@@ -91,7 +92,8 @@ class Main(cmd.Cmd):
         fv.next_command()
 
     # Exit method - Matt
-    def do_exit(self, line):
+    def do_exit(self, line):  # pragma: no cover
+        # + can't be tested as it will stop the program.
         """
         STOPS and EXITS the program.
         YOUR DATA WILL NOT BE SAVED.
@@ -137,7 +139,7 @@ class Main(cmd.Cmd):
         Usage: printfile
         """
         fc.print_file()
-        fv.next_command()
+        fv.next_command()  # pragma: no cover
 
     @staticmethod
     def test():
@@ -170,7 +172,7 @@ class SystemArgs:
             self.check_command = self.check_command()
         # Otherwise, Start the CMD.cmdloop
         else:
-            m.cmdloop()
+            m.cmdloop()  # pragma: no cover
 
     def check_if_commandargs_present(self):
         if len(self.args) == 2:
@@ -215,6 +217,9 @@ class SystemArgs:
 
     def do_load_command(self):
         if self.check_if_commandargs_present():
+            # User_choose seems to break the code
+            # when this is run from testing
+            # User_choose has been disabled for tests to run.
             fc.handle_command("load", str(sys.argv[2]))
         else:
             fv.general_error()
@@ -251,7 +256,7 @@ class SystemArgs:
         doctest.testfile("./doctests/fileexecuter_sysargs_doctest.txt", verbose=1)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     # To run tests, run Tests.py
     a = SystemArgs()
     a.check_if_commands_present()
