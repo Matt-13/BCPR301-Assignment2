@@ -64,5 +64,11 @@ Data
 ---------------------------------------------------------------
 Awaiting next command.. Type 'help' for all available commands.
 To quit the program.. Type 'exit' or 'quit'.
+>>> fv.no_filename_entered("C:\\", "load")
+No filename entered.
+Expected Syntax: load {filename.txt}
+>>> fv.no_filename_entered("C:\\", "absload")
+No filename entered.
+Expected Syntax: absload {path_to_file\filename.txt}
 
 """
