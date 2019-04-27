@@ -7,7 +7,7 @@ class FileWriter:
         pass
 
     @staticmethod
-    def write_file(code, file_name):
+    def write_file(code, file_name):   # pragma: no cover
         # text_file = open(str(file_name), "w")
         # text_file.write("hello")
         # print(code, file_name)

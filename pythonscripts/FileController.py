@@ -15,7 +15,6 @@ db = DataBase()
 
 class FileController:
     def __init__(self):
-        fconv.test()
         self.data = 'empty'
         self.loop_running = False
         self.get_commands = {
@@ -24,7 +23,7 @@ class FileController:
             "absload": self.absload_command
         }
 
-    def user_choose(self):
+    def user_choose(self):   # pragma: no cover
         self.loop_running = True
         while self.loop_running:
             userinput = input("Would you like to view the file"
@@ -156,7 +155,7 @@ class FileController:
             print("An error has occurred" + str(e))
 
     # Liam
-    def print_code(self, code_id):
+    def print_code(self, code_id):  # pragma: no cover
         try:
             code = db.get_code(code_id)
             if code != '':
@@ -171,10 +170,10 @@ class FileController:
 
     # Matthew - Possible Middle Man Smell..
     @staticmethod
-    def view_help():
+    def view_help():  # pragma: no cover
         fv.print_help()
 
     @staticmethod
-    def test():
+    def test():  # pragma: no cover
         import doctest
         doctest.testfile("../doctests/filecontroller_doctest.txt", verbose=1)

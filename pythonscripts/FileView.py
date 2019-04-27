@@ -17,7 +17,7 @@ class FileView:
             "": self.no_filename_entered
         }
 
-    def general_error(self):
+    def general_error(self):   # pragma: no cover
         print(self.error_message)
 
     # File Controller Methods
@@ -54,7 +54,7 @@ class FileView:
               "...........Prints code from self.data")
 
     @staticmethod
-    def fc_defaults(file_location):
+    def fc_defaults(file_location):   # pragma: no cover
         print("Command not entered. Looking for a "
               "Graph.txt in root directory, "
               "and directory above... ")
@@ -63,7 +63,7 @@ class FileView:
                       "and directory above."))
 
     @staticmethod
-    def fc_file_found():
+    def fc_file_found():   # pragma: no cover
         print("\nFile Found! Reading..\n")
 
     # Shortened to 1 line with a dict.
@@ -102,7 +102,7 @@ class FileView:
                   "{path_to_file\\filename.txt}")
 
     @staticmethod
-    def fc_permission_error():
+    def fc_permission_error():   # pragma: no cover
         print("File permission error! "
               "Make sure you have the "
               "correct read permission on the file")
@@ -111,65 +111,65 @@ class FileView:
     # File Converter Methods
 
     @staticmethod
-    def fc_plantuml_converting():
+    def fc_plantuml_converting():   # pragma: no cover
         print("Converting file to python syntax..")
 
     # File Reader Methods
     @staticmethod
-    def fr_plantuml_classes_not_found():
+    def fr_plantuml_classes_not_found():   # pragma: no cover
         print("Classes not found! Exiting..")
 
     @staticmethod
-    def fr_file_accepted():
+    def fr_file_accepted():   # pragma: no cover
         print("File Accepted.. Continuing..")
 
     @staticmethod
-    def file_written(file):
+    def file_written(file):   # pragma: no cover
         print("\nFile(s) Successfully Written to Disk: " +
               file)
 
     @staticmethod
-    def fr_plantuml_error():
+    def fr_plantuml_error():   # pragma: no cover
         print("File not in PlantUML Syntax! "
               "Program Stopping..")
 
     # File Executer Methods
     @staticmethod
-    def fe_defaults():
+    def fe_defaults():   # pragma: no cover
         print("\nNo arguments entered.. "
               "Continuing with defaults.")
 
     @staticmethod
-    def fe_too_many_args():
+    def fe_too_many_args():   # pragma: no cover
         print("\nToo many arguments entered. "
               "Please enter at most 2.")
 
     @staticmethod
-    def fe_command_syntax(name):
+    def fe_command_syntax(name):   # pragma: no cover
         print("{} requires a filename to {} with\n"
               "Syntax: {} [filename.txt]"
               .format(name, str(name).lower(), name))
 
     @staticmethod
-    def fe_save_id():
+    def fe_save_id():   # pragma: no cover
         print("Save requires an ID from the database "
               "to save with.\n"
               "Syntax: Save [filename.txt] [ID]")
 
     @staticmethod
-    def fe_loadcode_syntax(text):
+    def fe_loadcode_syntax(text):   # pragma: no cover
         print("{} requires the ID to know which code\n"
               "to load within the database.\n"
               "Syntax: {} [code_id]"
               .format(text, text))
 
     @staticmethod
-    def fe_abs_syntax():
+    def fe_abs_syntax():   # pragma: no cover
         print("absload requires a file to load.\n"
               "Syntax: absload {path_to_file\\filename.txt}")
 
     @staticmethod
-    def fe_abs_path_error():
+    def fe_abs_path_error():   # pragma: no cover
         print("Path must be an absolute path.")
 
     # Other Methods

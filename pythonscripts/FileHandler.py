@@ -54,7 +54,7 @@ class FileConverter:
                     self.find_relationship(relationship, self.class_name))
 
     # Made by Sarah
-    def add_class(self, class_name, attributes, methods, relationships):
+    def add_class(self, class_name, attributes, methods, relationships):   # pragma: no cover
         new_class = ClassBuilder(class_name, attributes,
                                  methods, relationships)
         new_class.add_class_attributes()
@@ -62,7 +62,7 @@ class FileConverter:
         self.converted_classes.append(new_class)
 
     # Some work on relationships
-    def find_relationship(self, relationship, class_name):
+    def find_relationship(self, relationship, class_name):   # pragma: no cover
         if relationship.startswith(class_name):
             pass
         elif relationship.endswith(class_name):
@@ -78,7 +78,7 @@ class FileConverter:
                 as_class = relationship.split(" ")[0]
                 return tuple(("aggregation of", as_class))
 
-    def return_program(self):
+    def return_program(self):   # pragma: no cover
         out = "# File generated & created on: " + str(datetime.datetime.now())
         out += "\n# File passes the PEP8 check."
         out += "\n\n"
@@ -87,7 +87,7 @@ class FileConverter:
         # out += ""
         self.codeToText += out
 
-    def read_file(self, file):
+    def read_file(self, file):   # pragma: no cover
         with open(file, "r") as filename:
             self.data = filename.read()
         read_uml = FileReader(self.data)
@@ -96,7 +96,7 @@ class FileConverter:
             self.classes[len(self.classes) - 1]
 
     @staticmethod
-    def test():
+    def test():   # pragma: no cover
         import doctest
         doctest.testfile("../doctests/filehandler_doctest.txt", verbose=1)
 
@@ -111,7 +111,7 @@ class FileReader:
         self.code = filename
 
     # Made by Matt
-    def check_if_plantuml(self, code):
+    def check_if_plantuml(self, code):   # pragma: no cover
         is_plantuml = False
         try:
             if code.startswith("@startuml") and code.endswith("@enduml"):
@@ -132,7 +132,7 @@ class FileReader:
 
     # Made by Liam
     # Check if the file contains the word "Class"
-    def count_occurrences(self, word, sentence):
+    def count_occurrences(self, word, sentence):   # pragma: no cover
         try:
             lower = sentence.lower()
             split = lower.split()
@@ -147,7 +147,7 @@ class FileReader:
             fv.general_error()
             print("An Error Occurred" + str(e))
 
-    def find_classes(self):
+    def find_classes(self):   # pragma: no cover
         try:
             is_plantuml = self.check_if_plantuml(self.code)
             if is_plantuml:

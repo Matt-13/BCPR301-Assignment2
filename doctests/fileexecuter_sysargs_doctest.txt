@@ -1,0 +1,23 @@
+"""
+
+>>> import sys
+>>> from FileExecuter import SystemArgs
+>>> sys.argv = ["", "help"]
+>>> s = SystemArgs()
+>>> s.check_if_commands_present() # doctest: +ELLIPSIS
+Command Found.. Parsing..
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+====...
+>>> sys.argv = ["", "", "", ""]
+>>> s = SystemArgs()
+>>> s.check_if_commandargs_present() # doctest: +ELLIPSIS
+Too many arguments entered.
+False
+>>> sys.argv = ["", "", ""]
+>>> s = SystemArgs()
+>>> s.check_if_commandargs_present() # doctest: +ELLIPSIS
+True
+
+"""

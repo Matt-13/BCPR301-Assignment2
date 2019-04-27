@@ -5,14 +5,14 @@ import sqlite3
 
 class DataBase:
 
-    def __init__(self, database='assignment.db'):
+    def __init__(self, database='assignment.db'):   # pragma: no cover
         self.database = database
         self.conn = None
         self.cursor = None
         self.connect()
         self.create_table()
 
-    def connect(self):
+    def connect(self):   # pragma: no cover
         self.conn = sqlite3.connect(self.database)
         print("Finishing connecting to database")
 
@@ -26,14 +26,14 @@ class DataBase:
             self.conn.close()
     """
 
-    def create_table(self):
+    def create_table(self):   # pragma: no cover
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS savedCode(
         codeID INTEGER PRIMARY KEY AUTOINCREMENT,
         timeStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
         code LONGTEXT)""")
         self.conn.commit()
 
-    def data_entry(self, code):
+    def data_entry(self, code):   # pragma: no cover
         out = ''
 
         self.cursor.execute("""INSERT INTO
@@ -54,7 +54,7 @@ class DataBase:
         print(out)
         self.conn.commit()
 
-    def get_code(self, code_id):
+    def get_code(self, code_id):   # pragma: no cover
         out = ''
         self.cursor.execute("""SELECT MAX(codeID)
          FROM savedCode""")

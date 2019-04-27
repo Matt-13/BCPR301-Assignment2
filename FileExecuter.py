@@ -16,24 +16,6 @@ fc = FileController()
 # 4/04/19 Code passes the PEP8 Check.
 # CMD based code - Matt
 
-class Tests:
-    # Extract tests into their own class to eliminate Long Class
-    # and keep the single responsibility principle.
-    def do_tests(self):
-        # TODO: REFACTOR these tests ;)
-        # fc.test()  # Test FileController and FileHandler
-        fv.test()
-        # self.test()
-
-    @staticmethod
-    def test():
-        import doctest
-        doctest.testfile("./doctests/fileexecuter_doctest.txt")
-
-
-t = Tests()
-
-
 class Main(cmd.Cmd):
     def __init__(self):
         super(Main, self).__init__()
@@ -157,6 +139,11 @@ class Main(cmd.Cmd):
         fc.print_file()
         fv.next_command()
 
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("./doctests/fileexecuter_main_doctest.txt", verbose=1)
+
 
 m = Main()
 
@@ -258,8 +245,13 @@ class SystemArgs:
             fv.general_error()
             fv.fe_loadcode_syntax("printcode")
 
+    @staticmethod
+    def test():
+        import doctest
+        doctest.testfile("./doctests/fileexecuter_sysargs_doctest.txt", verbose=1)
+
 
 if __name__ == "__main__":
-    t.do_tests()
+    # To run tests, run Tests.py
     a = SystemArgs()
     a.check_if_commands_present()
