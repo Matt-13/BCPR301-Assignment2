@@ -139,13 +139,13 @@ class FileReader:
             count = split.count(word)
             if count == 0:
                 fv.fr_plantuml_classes_not_found()
+            return count
         except TypeError:
             fv.general_error()
             print("The file must contain a string.")
         except Exception as e:
             fv.general_error()
             print("An Error Occurred" + str(e))
-        return count
 
     def find_classes(self):
         try:
