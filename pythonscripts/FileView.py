@@ -26,7 +26,7 @@ class FileView:
         # Matt's Code
         print("\n\n")
         print(self.equals +
-              "Graph Interpreter Help File " +
+              " Graph Interpreter Help File " +
               self.equals)
         print("")
         print("NOTE: FileExecuter.py "

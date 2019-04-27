@@ -13,9 +13,9 @@ class Tests:
 
     def do_tests(self):
         self.fc.test()  # Test FileController and FileHandler
-        # self.fv.test()  # Test FileView
-        # self.main.test()  # Test FileExecuter Main
-        # self.sys_args.test()  # Test FileExecuter SysArgs
+        self.fv.test()  # Test FileView
+        self.main.test()  # Test FileExecuter Main
+        self.sys_args.test()  # Test FileExecuter SysArgs
 
 
 if __name__ == "__main__":

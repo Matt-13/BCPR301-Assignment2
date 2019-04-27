@@ -42,14 +42,14 @@ class FileController:
     def handle_command(self, cmd, file_location):
         try:
             self.get_commands[cmd](file_location)
-        except FileNotFoundError:
+        except FileNotFoundError:  # pragma: no cover
             fv.fc_file_not_found(file_location, "lf", "")
 
     @staticmethod
     def is_file(filename):
         if os.path.isfile("{}".format(filename)):
             return True
-        elif os.path.isfile("./{}".format(filename)):
+        elif os.path.isfile("./{}".format(filename)):  # pragma: no cover
             return True
         else:
             return False
@@ -62,8 +62,8 @@ class FileController:
                 self.read_file("./Graph.txt")
                 # self.user_choose()
             else:
-                fv.output("Graph.txt Not Found in root!")
-        except FileNotFoundError:
+                fv.output("Graph.txt Not Found in root!")  # pragma: no cover
+        except FileNotFoundError:  # pragma: no cover
             fv.general_error()
             fv.fc_file_not_found(file_location, "r", "")
 
@@ -76,10 +76,10 @@ class FileController:
                     # self.user_choose()
                 else:
                     fv.output("File Not Found! '{}'".format(file_location))
-            except FileNotFoundError:
+            except FileNotFoundError:  # pragma: no cover
                 fv.general_error()
                 fv.fc_file_not_found(file_location, "r", "load")
-            except PermissionError:
+            except PermissionError:  # pragma: no cover
                 fv.general_error()
                 fv.fc_permission_error()
         else:
@@ -96,9 +96,9 @@ class FileController:
                 else:
                     fv.general_error()
                     fv.fc_file_not_found(file_location, "lf", "")
-            except FileNotFoundError:
+            except FileNotFoundError:  # pragma: no cover
                 fv.fc_file_not_found(file_location, "a", "absload")
-            except PermissionError:
+            except PermissionError:  # pragma: no cover
                 fv.fc_permission_error()
         else:
             self.command_error(file_location, "absload")
@@ -117,25 +117,25 @@ class FileController:
             fconv.convert_file()
             fconv.return_program()
             self.write_file()
-        except IOError:
+        except IOError:  # pragma: no cover
             print("System failed to save to file")
-        except Exception as e:
+        except Exception as e:  # pragma: no cover
             fv.general_error()
             print("An error has occurred" + str(e))
 
     def write_file(self):
         self.data = fconv.codeToText
-        fw.write_file(self.data, "Output.txt")
         db.data_entry(self.data)
+        fw.write_file(self.data, "Output.txt")
 
     # Liam
     def save_file(self, file_name, code_id):
         self.data = db.get_code(code_id)
         try:
             fw.write_file(db.get_code(code_id), file_name)
-        except IOError as e:
+        except IOError as e:  # pragma: no cover
             print("System failed to save to file" + e)
-        except Exception as e:
+        except Exception as e:  # pragma: no cover
             fv.general_error()
             print("An error has occurred" + str(e))
 
@@ -147,10 +147,10 @@ class FileController:
                 self.data = code
                 fv.output("Code has loaded successfully")
             else:
-                fv.output("ERROR: code failed to load:" + '\t' + code)
-        except IOError:
+                fv.output("ERROR: code failed to load:" + '\t' + code)  # pragma: no cover
+        except IOError:  # pragma: no cover
             print("System failed to save to file")
-        except Exception as e:
+        except Exception as e:  # pragma: no cover
             fv.general_error()
             print("An error has occurred" + str(e))
 
@@ -163,9 +163,9 @@ class FileController:
             else:
                 fv.output("ERROR: code failed to load:")
                 fv.output('\t' + code)
-        except ValueError and TypeError:
+        except ValueError and TypeError:  # pragma: no cover
             fv.output("Please enter an integer")
-        except IOError as e:
+        except IOError as e:  # pragma: no cover
             print("System failed to load to file" + e)
 
     # Matthew - Possible Middle Man Smell..

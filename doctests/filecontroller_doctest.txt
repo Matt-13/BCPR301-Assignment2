@@ -12,8 +12,7 @@ Expected Syntax: load {filename.txt}
 <BLANKLINE>
 ==========ERROR==========
 <BLANKLINE>
-Syntax Error
-Expected Syntax: load {filename.txt}
+...
 >>> fc.handle_command("absload", ".\\Graph.txt") # doctest: +ELLIPSIS
 <BLANKLINE>
 File Found! Reading..
@@ -50,8 +49,8 @@ System failed to save to file
 
 >>> fc.save_file("Output.txt", "-1")
 
->>> fc.save_file("", 0)
-System failed to save to file
+>>> fc.save_file("Output.txt", 1)
+
 >>> fc.load_code(0)
 Code has loaded successfully
 >>> fc.view_help() # doctest: +ELLIPSIS
@@ -60,11 +59,9 @@ Code has loaded successfully
 <BLANKLINE>
 ==================== Graph Interpreter Help File ====================
 ...
->>> fc.output_error("Error")
-<BLANKLINE>
-==========ERROR==========
-<BLANKLINE>
-Error
->>> fc.quit()
+>>> fc.no_command("") # doctest: +ELLIPSIS
+Command not entered...
+>>> fc.load_command("Abc.txt")
+File Not Found! 'Abc.txt'
 
 """
