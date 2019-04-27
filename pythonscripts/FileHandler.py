@@ -195,7 +195,7 @@ class ClassBuilder:
             self.all_my_methods.append(new_m)
 
     # Some work on relationships
-    def add_class_relationships(self):
+    def add_class_relationships(self):  # pragma: no cover
         for a_relationship in self.all_my_relationships:
             if "comp" in a_relationship:
                 new_relationship = Relationship(a_relationship)
@@ -290,7 +290,7 @@ Matt's Relationship code
 """
 
 
-class Relationship:
+class Relationship:  # pragma: no cover
     def __init__(self, new_type):
         self.name = new_type[1]
         self.type = new_type[0]
